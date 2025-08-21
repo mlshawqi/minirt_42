@@ -76,3 +76,67 @@ Tuple   negate(Tuple t) {
 
         return (result);
 }
+
+Tuple   multiply_scalar(Tuple t, double scalar)
+{
+        Tuple   result;
+
+        result.x = t.x * scalar;
+        result.y = t.y * scalar;
+        result.z = t.z * scalar;
+        result.w = t.w;
+        return (result);
+}
+
+Tuple   divide_scalar(Tuple t, double scalar)
+{
+        Tuple   result;
+
+        result.x = t.x / scalar;
+        result.y = t.y / scalar;
+        result.z = t.z / scalar;
+        result.w = t.w;
+        return (result);
+}
+
+
+
+double  magnitude(Tuple v)
+{
+        double  sum_of_squares;
+
+        sum_of_squares = (v.x * v.x) + (v.y * v.y) + (v.z * v.z);
+        return sqrt(sum_of_squares);
+}
+
+Tuple   normalize(Tuple v)
+{
+        double  mag;
+        Tuple  result;
+
+        mag = magnitude(v);   // find the length first
+        result.x = v.x / mag; // divide each component by the length
+        result.y = v.y / mag;
+        result.z = v.z / mag;
+
+        return result;
+}
+
+double  dot_product(Tuple a, Tuple b)
+{
+        double  dot;
+
+        dot = (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w);
+        return (dot);
+}
+
+Tuple   cross(Tuple a, Tuple b)
+{
+        Tuple   result;
+
+        result.x = a.y * b.z - a.z * b.y;
+        result.y = a.z * b.x - a.x * b.z;
+        result.z = a.x * b.y - a.y * b.x;
+        result.w = 0.0; // always a vector
+        return result;
+}
