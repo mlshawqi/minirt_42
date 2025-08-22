@@ -69,6 +69,11 @@ void free_canvas(Canvas *c);
 
 Matrix  *create_matrix(int rows, int cols);
 void    free_matrix(Matrix *m);
+void  transposing_matrix(Matrix a);
+Tuple  multiply_matrix_tuple(Matrix a, Tuple p);
+Matrix  *multiply_matrix(Matrix a, Matrix b);
+bool    comparing_matrix(Matrix a, Matrix b);
+Matrix  *create_matrix(int rows, int cols);
 
 
 

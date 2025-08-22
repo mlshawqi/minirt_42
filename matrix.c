@@ -149,44 +149,26 @@ Tuple  multiply_matrix_tuple(Matrix a, Tuple p)
 }
 
 
-void print_matrix(Matrix *m)
+// turn rows into columns and columns rows
+void  transposing_matrix(Matrix a)
 {
-    for (int i = 0; i < m->rows; i++)
-    {
-        for (int j = 0; j < m->cols; j++)
-            printf("%6.2f ", m->array[i][j]);
-        printf("\n");
-    }
-}
+        int     i;
+        int     j;
+        double  tmp;
 
-int main(void)
-{
-    Matrix *A = create_matrix(4, 4);
-
-    // Fill matrix A
-    double a_vals[4][4] = {
-        {1, 2, 3, 4},
-        {2, 4, 4, 2},
-        {8, 6, 4, 1},
-        {0, 0, 0, 1}
-    };
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            A->array[i][j] = a_vals[i][j];
-
-    // Create tuple b ← tuple(1, 2, 3, 1)
-    Tuple b = point(1, 2, 3);
-
-    // Multiply matrix by tuple
-    Tuple result = multiply_matrix_tuple(*A, b);
-
-    printf("Matrix A:\n");
-    print_matrix(A);
-    printf("\nTuple b: (%.2f, %.2f, %.2f, %.2f)\n", b.x, b.y, b.z, b.w);
-    printf("\nResult of A * b: (%.2f, %.2f, %.2f, %.2f)\n", result.x, result.y, result.z, result.w);
-
-    free_matrix(A);
-
-    return 0;
+        i = 0;
+        j = 0;
+        while(i < a.rows)
+        {
+                j = i;
+                while(j < a.cols)
+                {
+                        tmp = a.array[i][j];
+                        a.array[i][j] = a.array[j][i];
+                        a.array[j][i] = tmp;
+                        j++;
+                }
+                i++;
+        }
 }
 
