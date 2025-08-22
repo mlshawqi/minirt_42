@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
-
-
-typedef struct {
-        double red;
-        double green;
-        double blue;
-} Color;
-
-
-typedef struct
-{
-        int width;
-        int height;
-        Color *pixels;  // 1D array to store pixels (row-major order)
-} Canvas;
-
+#include "header.h"
 
 
 Color   color(double r, double g, double b)

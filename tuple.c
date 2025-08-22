@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
-#define EPSILON 0.00001
-
-typedef struct {
-    double x;
-    double y;
-    double z;
-    double w; //if w=1 -> point if w=0 -> vector
-} Tuple;
+#include "header.h"
 
 
 Tuple   point(double x, double y, double z)
@@ -34,7 +24,7 @@ Tuple   vector(double x, double y, double z)
 }
 
 
-bool    float_equal(double a, double b)
+bool    scalars_equal(double a, double b)
 {
         if (fabs(a - b) < EPSILON)
                 return (true);
@@ -67,8 +57,10 @@ Tuple   adding_tuples(Tuple p2, Tuple p1)
 }
 
 //Negating a tuple flips its direction
-Tuple   negate(Tuple t) {
+Tuple   negate(Tuple t) 
+{
         Tuple       result;
+
         result.x = -t.x;
         result.y = -t.y;
         result.z = -t.z;
