@@ -18,10 +18,10 @@ int main(void)
 
     // Fill matrix A
     double a_vals[4][4] = {
-        {-6, 1, 1, 6},
-        {-8, 5, 8, 6},
-        {-1, 0, 8, 2},
-        {-7, 1, -1, 1}
+        {-2, -8, 3, 5},
+        {-3, 1, 7, 3},
+        {1, 2, -9, 6},
+        {-6, 7, 7, -9}
     };
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
@@ -30,18 +30,14 @@ int main(void)
     printf("Original Matrix A:\n");
     print_matrix(A);
 
-    // Get submatrix by removing row 2 and column 1
-    Matrix *S = submatrix(*A, 2, 1);
+    // Calculate minor for (row=1, column=0)
+    double m = determinat(*A);
 
-    printf("\nSubmatrix(A, 2, 1):\n");
-    if (S)
-        print_matrix(S);
-    else
-        printf("Submatrix is NULL\n");
+    printf("\ndet = %.2f\n", m);
 
     free_matrix(A);
-    if (S)
-        free_matrix(S);
 
     return 0;
 }
+
+

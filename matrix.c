@@ -217,3 +217,50 @@ Matrix  *submatrix(Matrix a, int row, int cols)
         }
         return (s);
 }
+
+//the determinat of submatrix
+double  minor(Matrix a, int row, int column)
+{
+        Matrix  *s;
+        double  m;
+
+        s = submatrix(a, row, column);
+        if(s->rows != 2)
+                m = determinat(*s);
+        else
+                m = determinant_2x2(*s);
+        free_matrix(s);
+        return (m);
+}
+
+
+double  cofactor(Matrix a, int row, int column)
+{
+        double  m;
+        double  c;
+
+        m = minor(a, row, column);
+        if((row + column) % 2 == 0)
+                c = m;
+        else
+                c = -m;
+        return (c);
+}
+
+
+double  determinat(Matrix a)
+{
+        int     i;
+        double  det;
+
+        if(a.rows == 2 && a.cols == 2)
+                return (determinant_2x2(a));
+        i = 0;
+        det = 0;
+        while(i < a.cols)
+        {
+                det += (a.array[0][i] * cofactor(a, 0, i));
+                i++;
+        }
+        return (det);
+}

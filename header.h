@@ -76,6 +76,9 @@ bool    comparing_matrix(Matrix a, Matrix b);
 Matrix  *create_matrix(int rows, int cols);
 double  determinant_2x2(Matrix a);
 Matrix  *submatrix(Matrix a, int row, int cols);
+double  minor(Matrix a, int row, int column);
+double  cofactor(Matrix a, int row, int column);
+double  determinat(Matrix a);
 
 
 
