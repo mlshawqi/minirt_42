@@ -79,6 +79,7 @@ Matrix  *submatrix(Matrix a, int row, int cols);
 double  minor(Matrix a, int row, int column);
 double  cofactor(Matrix a, int row, int column);
 double  determinat(Matrix a);
+Matrix  *inverse(Matrix a);
 
 
 

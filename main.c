@@ -6,7 +6,7 @@ void print_matrix(Matrix *m)
     for (int i = 0; i < m->rows; i++)
     {
         for (int j = 0; j < m->cols; j++)
-            printf("%.0f ", m->array[i][j]);
+            printf("%.5f ", m->array[i][j]);
         printf("\n");
     }
 }
@@ -15,13 +15,14 @@ void print_matrix(Matrix *m)
 int main(void)
 {
     Matrix *A = create_matrix(4, 4);
+    Matrix  *b;
 
     // Fill matrix A
     double a_vals[4][4] = {
-        {-2, -8, 3, 5},
-        {-3, 1, 7, 3},
-        {1, 2, -9, 6},
-        {-6, 7, 7, -9}
+        {8, -5, 9, 2},
+        {7, 5, 6, 1},
+        {-6, 0, 9, 6},
+        {-3, 0, -9, -4}
     };
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
@@ -31,11 +32,13 @@ int main(void)
     print_matrix(A);
 
     // Calculate minor for (row=1, column=0)
-    double m = determinat(*A);
+    b = inverse(*A);
 
-    printf("\ndet = %.2f\n", m);
+    printf("\n----------------\n");
+    print_matrix(b);
 
     free_matrix(A);
+    free_matrix(b);
 
     return 0;
 }

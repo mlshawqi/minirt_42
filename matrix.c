@@ -264,3 +264,32 @@ double  determinat(Matrix a)
         }
         return (det);
 }
+
+Matrix  *inverse(Matrix a)
+{
+        Matrix  *b;
+        int     i;
+        int     j;
+        double  c;
+        double  det;
+
+        det = determinat(a);
+        if(det == 0)
+                return (NULL);
+        b = create_matrix(a.rows, a.cols);
+        if(!b)
+                return (NULL);
+        i = 0;
+        while(i < a.rows)
+        {
+                j = 0;
+                while(j < a.cols)
+                {
+                        c = cofactor(a, i, j);
+                        b->array[j][i] = (c / det);
+                        j++;
+                }
+                i++;
+        }
+        return (b);
+}
