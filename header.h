@@ -74,6 +74,8 @@ Tuple  multiply_matrix_tuple(Matrix a, Tuple p);
 Matrix  *multiply_matrix(Matrix a, Matrix b);
 bool    comparing_matrix(Matrix a, Matrix b);
 Matrix  *create_matrix(int rows, int cols);
+double  determinant_2x2(Matrix a);
+Matrix  *submatrix(Matrix a, int row, int cols);
 
 
 

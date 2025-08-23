@@ -172,3 +172,48 @@ void  transposing_matrix(Matrix a)
         }
 }
 
+
+double  determinant_2x2(Matrix a)
+{
+        double  d;
+
+        d = (a.array[0][0] * a.array[1][1]) - (a.array[0][1] * a.array[1][0]);
+        return (d);
+}
+
+
+//delete a row and column from a matrix
+Matrix  *submatrix(Matrix a, int row, int cols)
+{
+        Matrix  *s;
+        int     i;
+        int     j;
+        int     k;
+        int     m;
+
+        if(a.rows <= 2 || a.cols <= 2)
+                return (NULL);
+        s = create_matrix(a.rows - 1, a.cols - 1);
+        if(!s)
+                return (NULL);
+        i = 0;
+        k = 0;
+        while(i < a.rows)
+        {
+                j = 0;
+                m = 0;
+                while(i != row && j < a.cols)
+                {
+                        if(j != cols)
+                        {
+                                s->array[k][m] = a.array[i][j];
+                                m++;
+                        }
+                        j++;
+                }
+                if(i != row)
+                        k++;
+                i++;
+        }
+        return (s);
+}

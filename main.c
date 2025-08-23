@@ -18,10 +18,10 @@ int main(void)
 
     // Fill matrix A
     double a_vals[4][4] = {
-        {0, 9, 3, 0},
-        {9, 8, 0, 8},
-        {1, 8, 5, 3},
-        {0, 0, 5, 8}
+        {-6, 1, 1, 6},
+        {-8, 5, 8, 6},
+        {-1, 0, 8, 2},
+        {-7, 1, -1, 1}
     };
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
@@ -30,13 +30,18 @@ int main(void)
     printf("Original Matrix A:\n");
     print_matrix(A);
 
-    // Transpose matrix A in place
-    transposing_matrix(*A);
+    // Get submatrix by removing row 2 and column 1
+    Matrix *S = submatrix(*A, 2, 1);
 
-    printf("\nTransposed Matrix A:\n");
-    print_matrix(A);
+    printf("\nSubmatrix(A, 2, 1):\n");
+    if (S)
+        print_matrix(S);
+    else
+        printf("Submatrix is NULL\n");
 
     free_matrix(A);
+    if (S)
+        free_matrix(S);
 
     return 0;
 }
