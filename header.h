@@ -1,5 +1,5 @@
 #ifndef HEADER_H
-#define HEADR_H
+#define HEADER_H
 
 
 #include <stdio.h>
@@ -80,6 +80,14 @@ double  minor(Matrix a, int row, int column);
 double  cofactor(Matrix a, int row, int column);
 double  determinat(Matrix a);
 Matrix  *inverse(Matrix a);
+Tuple   reflection(Tuple p);
+Tuple   multiply_inverse_scaling(Tuple p, double x, double y, double z);
+Tuple   multiply_scaling(Tuple p, double x, double y, double z);
+Matrix  *scaling(double x,double y,double z);
+Tuple   multiply_inverse_translation(Tuple p, double x, double y, double z);
+Tuple   multiply_translation(Tuple p, double x, double y, double z);
+Matrix   *translation(double x, double y, double z);
+
 
 
 
