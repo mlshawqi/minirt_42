@@ -389,3 +389,17 @@ Tuple   reflection(Tuple p)
         r = multiply_scaling(p, -1, 1, 1);
         return (r);
 }
+
+
+//radian pass as (M_PI / 4 = (degrees))
+Tuple   rotation_x(Tuple p, double radians)
+{
+        Tuple   r;
+        double  y;
+        double  z;
+
+        y = p.y * cos(radians) - p.z * sin(radians);
+        z = p.y * sin(radians) + p.z * cos(radians);
+        r = point(p.x, y, z);
+        return (r);
+}
