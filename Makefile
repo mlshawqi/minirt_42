@@ -1,6 +1,6 @@
 NAME = minirt
 
-SRCS = main.c tuple.c matrix.c color.c
+SRCS = main.c tuple.c matrix.c color.c transformation.c 
 	
 OBJS = $(SRCS:.c=.o)
 

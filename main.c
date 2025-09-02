@@ -11,36 +11,15 @@ void print_matrix(Matrix *m)
     }
 }
 
+int main() {
+    Tuple p = point(2, 3, 4);
+    Tuple transform = shearing(p, 0, 0, 0, 0, 0, 1);
 
-int main(void)
-{
-    Matrix *A = create_matrix(4, 4);
-    Matrix  *b;
+    printf("Result: point(%.0f, %.0f, %.0f)\n", transform.x, transform.y, transform.z);
 
-    // Fill matrix A
-    double a_vals[4][4] = {
-        {8, -5, 9, 2},
-        {7, 5, 6, 1},
-        {-6, 0, 9, 6},
-        {-3, 0, -9, -4}
-    };
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            A->array[i][j] = a_vals[i][j];
-
-    printf("Original Matrix A:\n");
-    print_matrix(A);
-
-    // Calculate minor for (row=1, column=0)
-    b = inverse(*A);
-
-    printf("\n----------------\n");
-    print_matrix(b);
-
-    free_matrix(A);
-    free_matrix(b);
-
+    // Expected output: point(5, 3, 4)
     return 0;
 }
+
 
 
