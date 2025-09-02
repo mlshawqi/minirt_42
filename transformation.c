@@ -47,7 +47,7 @@ Tuple   multiply_inverse_translation(Tuple p, double x, double y, double z)
 }
 
 //make the image larger or smaller in size
-Matrix  *scaling(double x,double y,double z)
+Matrix  *scaling(double x, double y, double z)
 {
         Matrix  *m;
 
@@ -97,54 +97,115 @@ Tuple   reflection(Tuple p)
 }
 
 
+
+
 //radian pass as (M_PI / 4 = (degrees))
-Tuple   rotation_x(Tuple p, double radians)
+Matrix   *rotation_x(double radians)
 {
-        Tuple   r;
-        double  y;
-        double  z;
+        Matrix   *r;
 
-        y = p.y * cos(radians) - p.z * sin(radians);
-        z = p.y * sin(radians) + p.z * cos(radians);
-        r = point(p.x, y, z);
+        r = create_matrix(4, 4);
+        if(!r)
+                return (NULL);
+        r->array[0][0] = 1;
+        r->array[1][1] = cos(radians);
+        r->array[1][2] = -sin(radians);
+        r->array[2][1] = sin(radians);
+        r->array[2][2] = cos(radians);
+        r->array[3][3] = 1;
+
+        // y = p.y * cos(radians) - p.z * sin(radians);
+        // z = p.y * sin(radians) + p.z * cos(radians);
+        // r = point(p.x, y, z);
         return (r);
 }
 
-Tuple   rotation_y(Tuple p, double radians)
+Matrix   *rotation_y(double radians)
 {
-        Tuple   r;
-        double  x;
-        double  z;
+        Matrix   *r;
 
-        x = p.x * cos(radians) + p.z * sin(radians);
-        z = -(p.x) * sin(radians) + p.z * cos(radians);
-        r = point(x, p.y, z);
+        r = create_matrix(4, 4);
+        if(!r)
+                return (NULL);
+        r->array[0][0] = cos(radians);
+        r->array[0][2] = sin(radians);
+        r->array[1][1] = 1;
+        r->array[2][0] = -sin(radians);
+        r->array[2][2] = cos(radians);
+        r->array[3][3] = 1;
+        // x = p.x * cos(radians) + p.z * sin(radians);
+        // z = -(p.x) * sin(radians) + p.z * cos(radians);
+        // r = point(x, p.y, z);
         return (r);
 }
 
-Tuple   rotation_z(Tuple p, double radians)
+Matrix   *rotation_z(double radians)
 {
-        Tuple   r;
-        double  x;
-        double  y;
+        Matrix   *r;
 
-        x = p.x * cos(radians) - p.y * sin(radians);
-        y = p.x * sin(radians) + p.y * cos(radians);
-        r = point(x, y, p.z);
+        r = create_matrix(4, 4);
+        if(!r)
+                return (NULL);
+        r->array[0][0] = cos(radians);
+        r->array[0][1] = -sin(radians);
+        r->array[1][0] = sin(radians);
+        r->array[1][1] = cos(radians);
+        r->array[2][2] = 1;
+        r->array[3][3] = 1;
+        // x = p.x * cos(radians) - p.y * sin(radians);
+        // y = p.x * sin(radians) + p.y * cos(radians);
+        // r = point(x, y, p.z);
         return (r);
 }
 
-Tuple   shearing(Tuple p, double xy, double xz, double yx, double yz, double zx, double zy)
+Tuple   multiply_rotation(Tuple p, double radains, char c)
 {
-        Tuple   s;
-        double  x;
-        double  y;
-        double  z;
+        Matrix  *m;
+        Tuple   t;
 
-        x = p.x + (xy * p.y) + (xz * p.z);
-        y = p.y + (yx * p.x) + (yz * p.z);
-        z = p.z + (zx * p.x) + (zy * p.y);
+        m = NULL;
+        if(c == 'x')
+                m = rotation_x(radains);
+        else if(c == 'y')
+                m = rotation_y(radains);
+        else if(c == 'z')
+                m = rotation_z(radains);
+        t = multiply_matrix_tuple(*m, p);
+        free_matrix(m);
+        return (t);
+}
 
-        s = point(x, y, z);
-        return (s);
+Matrix   *shearing(double xy, double xz, double yx, double yz, double zx, double zy)
+{
+        Matrix   *r;
+
+        r = create_matrix(4, 4);
+        if(!r)
+                return (NULL);
+        r->array[0][0] = 1;
+        r->array[0][1] = xy;
+        r->array[0][2] = xz;
+        r->array[1][0] = yx;
+        r->array[1][1] = 1;
+        r->array[1][2] = yz;
+
+        r->array[2][0] = zx;
+        r->array[2][1] = zy;
+        r->array[2][2] = 1;
+        r->array[3][3] = 1;
+        // x = p.x + (xy * p.y) + (xz * p.z);
+        // y = p.y + (yx * p.x) + (yz * p.z);
+        // z = p.z + (zx * p.x) + (zy * p.y);
+        return (r);
+}
+
+Tuple   multiply_shearing(Tuple p, double xy, double xz, double yx, double yz, double zx, double zy)
+{
+        Matrix  *m;
+        Tuple   t;
+
+        m = shearing(xy, xz, yx, yz, zx, zy);
+        t = multiply_matrix_tuple(*m, p);
+        free_matrix(m);
+        return (t);
 }

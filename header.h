@@ -89,7 +89,10 @@ Matrix  *scaling(double x,double y,double z);
 Tuple   multiply_inverse_translation(Tuple p, double x, double y, double z);
 Tuple   multiply_translation(Tuple p, double x, double y, double z);
 Matrix   *translation(double x, double y, double z);
-Tuple   shearing(Tuple p, double xy, double xz, double yx, double yz, double zx, double zy);
+Matrix   *rotation_x(double radians);
+Matrix   *rotation_y(double radians);
+Matrix   *rotation_z(double radians);
+Matrix   *shearing(double xy, double xz, double yx, double yz, double zx, double zy);
 
 
 

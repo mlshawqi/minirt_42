@@ -12,10 +12,10 @@ void print_matrix(Matrix *m)
 }
 
 int main() {
-    Tuple p = point(2, 3, 4);
-    Tuple transform = shearing(p, 0, 0, 0, 0, 0, 1);
+    // Tuple p = point(2, 3, 4);
+    // Tuple transform = shearing(p, 0, 0, 0, 0, 0, 1);
 
-    printf("Result: point(%.0f, %.0f, %.0f)\n", transform.x, transform.y, transform.z);
+    // printf("Result: point(%.0f, %.0f, %.0f)\n", transform.x, transform.y, transform.z);
 
     // Expected output: point(5, 3, 4)
     return 0;
