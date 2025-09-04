@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
+#include "minilibx-linux/mlx.h"
 #define EPSILON 0.00001
 
 

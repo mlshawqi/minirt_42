@@ -7,11 +7,12 @@ OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -lm
+LIBS= -L ./minilibx-linux -lmlx -lX11 -lXext
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJS)
